@@ -26,7 +26,7 @@ function connectToDatabase() {
 
 function createTabledest(dbdest) {
   dbdest.exec(`
-          CREATE TABLE destregister
+          CREATE TABLE trades
           (
           time        TEXT,
           symbol      TEXT,

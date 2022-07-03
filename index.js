@@ -85,7 +85,7 @@ app.get("/copytodb",(req,res)=>{
             res.send(err);
         }else{
 
-            var sqlins = "INSERT INTO destregister VALUES ";
+            var sqlins = "INSERT INTO trades VALUES ";
             
            bases.dbdest.run(sqlins+params,error=>{
             if(error){
