@@ -9,8 +9,10 @@
 <header><h1>Importador</h1></header>
 <body>
 <form action="/subir" method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
+    <input type="file" name="file" required>
+    <br>
     <hr>
+    <br>
     <input type="radio" name="typeselected" id="buy" value="Long">
     <label for="buy">Buy</label>
     <input type="radio" name="typeselected" id="sell" value="Short">

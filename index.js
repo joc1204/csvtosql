@@ -34,7 +34,6 @@ if(req.params.file===undefined){
 }
 })
 
-
 app.post('/subir',upload.single('file'),(req,res)=>{
     var destino=req.file.destination;
     var archivo=req.file.filename;
