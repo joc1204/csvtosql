@@ -53,10 +53,10 @@ app.post('/subir',upload.single('file'),(req,res)=>{
 });
 
 app.get("/copytodb",(req,res)=>{
-    bases.dborig.all("SELECT col4 as time,col6 as contracts,col2 as type,CAST(col5 AS REAL) as price,CAST(col8 AS REAL) as profitporc,CAST(col7 AS REAL) as profitusdt FROM tempregister",(errr,consulta)=>{
-    let closePrice=0;
+    bases.dborig.all("SELECT col4 as timeclose,col6 as contracts,col2 as type,CAST(col5 AS REAL) as closePrice,CAST(col8 AS REAL) as profitporc,CAST(col7 AS REAL) as profitusdt,CAST(col15 as REAL) as price,col16 as time FROM tempregister",(errr,consulta)=>{
+    //let closePrice=0;
     let comission="a definir";
-    let timeclose="a definir";
+    //let timeclose="a definir";
     let fincadena="";
     let status="closed";
     let simbolo="'ETHUSDT'";
@@ -79,11 +79,11 @@ app.get("/copytodb",(req,res)=>{
                     "'"+type+"',"+
                     +consulta[i].price+","+
                     "'"+status+"',"+
-                    closePrice+","+
+                    consulta[i].closePrice+","+
                     consulta[i].profitporc+","+
                     consulta[i].profitusdt+","+
                     "'"+comission+"',"+
-                    "'"+timeclose+fincadena);
+                    "'"+consulta[i].timeclose+fincadena);
     }
     if(errr){
             res.send(err);

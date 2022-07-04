@@ -6,27 +6,26 @@ require('fs').readFileSync(filecsv, 'utf-8').split(/\r?\n|\r/).forEach(function(
 datacsv.shift();
             const todasFilas = datacsv;
             let string = '';
+            var column=0;
             for (let fila = 0; fila < todasFilas.length; fila++) {
-                const celdasFila = todasFilas[fila].split(',');
+                const celdasFila = todasFilas[fila].split(','); 
                     if (celdasFila[1].includes(typetrade)){
-                        for (let rowCell = 0; rowCell < celdasFila.length; rowCell++) {
-                            if(rowCell===0){
-                                if (string.length > 1){string += ",";}
-                                string += "('";
-                            }else{
-                                string += "'";
-                            }
-                                string += celdasFila[rowCell];
-                                if (rowCell===celdasFila.length-1){
-                                    string+="')"
-                                }else{
-                                    string+="',"
-                                }
-                            }
+                        if (celdasFila[1].includes("Exit")){
+                            for (let rowCell = 0; rowCell < celdasFila.length; rowCell++) {
+                                column=rowCell;
+                                if(rowCell===0){
+                                    if (string.length > 1){string += ",";}
+                                    string += "(";
+                                }else{string+=","}
+                                    string += "'"+celdasFila[rowCell]+"'";
+                                } // fin del for que recorre las columnas
+                        }else{
+                            string+=",'"+celdasFila[4]+"','"+celdasFila[3]+"')";
                         }
+                    }
 
-                }
-return string;
+            } //fin del for que recorre las filas (let fila = 0; fila < todasFilas.length; fila++)
+            return string;
         }
 
 module.exports=addstring;

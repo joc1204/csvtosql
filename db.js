@@ -61,7 +61,9 @@ function createTableorig(dborig) {
           col11       TEXT,
           col12       TEXT,
           col13       TEXT,
-          col14       TEXT
+          col14       TEXT,
+          col15       TEXT,
+          col16       TEXT
           )
         `);
 
