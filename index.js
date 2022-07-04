@@ -21,11 +21,14 @@ app.get('/',(req,res)=>{
 
 app.get("/descargar/:file?",(req,res)=>{
 if(req.params.file===undefined){
-res.sendFile("/descargar.html",{root:__dirname})
+    res.sendFile("/descargar.html",{root:__dirname})
 }else{
     res.download(__dirname+"/public/"+req.params.file,req.params.file,function(err){
         if(err){
             console.log(err);
+        }else{
+            bases.dborig.run('DELETE FROM TEMPREGISTER');
+            bases.dbdest.run('DELETE FROM TRADES');
         }
     })
 }
@@ -36,9 +39,9 @@ app.post('/subir',upload.single('file'),(req,res)=>{
     var destino=req.file.destination;
     var archivo=req.file.filename;
     var filecsv=destino+"/"+archivo;
-    var results=obtenerstring(filecsv);
+    var typetrade=req.body.typeselected;
+    var results=obtenerstring(filecsv,typetrade);
     var sql = "INSERT INTO tempregister VALUES ";
-
     bases.dborig.run(sql+results,error=>{
     if(error){
         return res.send(error);
@@ -46,6 +49,8 @@ app.post('/subir',upload.single('file'),(req,res)=>{
         res.redirect("/copytodb");
     }
     });
+
+
 });
 
 app.get("/copytodb",(req,res)=>{

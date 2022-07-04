@@ -10,7 +10,15 @@
 <body>
 <form action="/subir" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
-    <button type="submit" >Subir</button>
+    <hr>
+    <input type="radio" name="typeselected" id="buy" value="Long">
+    <label for="buy">Buy</label>
+    <input type="radio" name="typeselected" id="sell" value="Short">
+    <label for="sell">Sell</label>
+    <input checked type="radio" name="typeselected" id="both" value="">
+    <label for="both">Both</label>
+    <br>
+    <button type="submit" >Enviar</button>
 </form>
 </body>
 </html>
